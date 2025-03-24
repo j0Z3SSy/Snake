@@ -1,0 +1,13 @@
+Add-ons?
+- Bonus Skill: Implement WebSockets for multiplayer functionality.
+- Compose music and rest of sound effects
+- database connection for scoreboard
+- more colors for snakes and food
+- obstacles and different maps.
+- different fruits give different effects, growth, slow time, make invincible for moment
+- make the page totally responsive
+- add footer
+
+
+Problems:
+- 

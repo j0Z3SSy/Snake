@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap"
+      rel="stylesheet"
+    />
+    <!-- import favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="artwork/favicon.ico"
+    />
+    <!-- import CSS File -->
+    <link rel="stylesheet" href="style.css" />
+    <title>🐍SNAKE</title>
+  </head>
+  <body>
+    <header>
+      <h1>
+        🐍SNAKE by
+        <a href="https://github.com/j0Z3SSy" target="_blank">Joni Mitronen</a>
+      </h1>
+    </header>
+    <!-- instructions -->
+    <div class="instructions-container">
+      <button>How To Play?</button>
+      <div class="instructions">
+        <p>⬆️⬇️⬅️➡️ Control your snake using the arrow keys.</p>
+        <p>🍎 Eat the fruit to grow longer and score points!</p>
+        <p>⚠️ Avoid hitting yourself!</p>
+      </div>
+    </div>
+    <div class="scoreboard-container">
+      <div class="score-item">
+        <!-- current score -->
+        <p>Current Score:</p>
+        <p id="points">0</p>
+      </div>
+      <div class="score-item">
+        <!-- personal best highscore -->
+        <p>Personal Best:</p>
+        <p id="highscore">0</p>
+      </div>
+    </div>
+    <!-- start notification -->
+    <p id="start">Press Enter to play!</p>
+    <!-- gameover notification -->
+    <p id="gameOver">Game Over...<br />Press Enter to try again!</p>
+    <!-- gameboard -->
+    <div id="flexbox">
+      <canvas id="gameboard"></canvas>
+    </div>
+    <footer><h2>©2025 Joni Mitronen. All rights reserved.</h2></footer>
+    <!-- script -->
+    <script src="script.js"></script>
+  </body>
+</html>
