@@ -1,24 +1,32 @@
+// global variables that define the core of the game, when instance of SnakeGame is created
+let gridSize = 10;
+let squareSize = 50;
+let direction = "right";
+let points = 0;
+let speed = 400;
+let snake = [1];
+
 class SnakeGame {
   // constructor to initialize the game
-  constructor() {
-    // global variables
-    this.gridSize = 10;
-    this.squareSize = 50;
-    this.direction = "right";
+  constructor(gridSize, squareSize, direction, points, speed, snake) {
+    // global properties
+    this.gridSize = gridSize;
+    this.squareSize = squareSize;
+    this.direction = direction;
+    this.points = points;
+    this.speed = speed;
+    this.snake = snake;
     this.gameOver = false;
     this.gameStarted = false;
-    this.points = 0;
-    this.speed = 400;
-    this.snake = [1];
     this.foodPosition = this.generateFoodPosition();
-    // setup artwork for snake,food and gameboard
+    // setup image objects as artwork for snake,food and gameboard
     this.snakeImage = new Image();
     this.foodImage = new Image();
     this.gameboardImage = new Image();
     this.snakeImage.src = "./artwork/snake.png";
     this.foodImage.src = "./artwork/food.png";
     this.gameboardImage.src = "./artwork/gameboard.png";
-    // setup sound effects and audio for eating, start, game over and music
+    // setup audio object as sound effects and audio for eating
     this.snakeEats = new Audio();
     this.snakeEats.src = "./audio/eat.mp3";
     // get often used elements from html and local storage etc.
@@ -57,13 +65,7 @@ class SnakeGame {
     this.ctx.clearRect(0, 0, this.grid.width, this.grid.height);
     for (let x = 0; x < this.grid.width; x += this.squareSize) {
       for (let y = 0; y < this.grid.height; y += this.squareSize) {
-        this.ctx.drawImage(
-          this.gameboardImage,
-          x,
-          y,
-          this.squareSize,
-          this.squareSize
-        );
+        this.ctx.drawImage(this.gameboardImage, x, y, this.squareSize, this.squareSize);
       }
     }
   }
@@ -120,13 +122,7 @@ class SnakeGame {
       // Set shadow properties
       this.setShadow(this.ctx, "rgba(53, 255, 137, 0.65)", 8);
 
-      this.ctx.drawImage(
-        this.snakeImage,
-        x,
-        y,
-        this.squareSize,
-        this.squareSize
-      );
+      this.ctx.drawImage(this.snakeImage, x, y, this.squareSize, this.squareSize);
 
       // Reset shadow properties
       this.resetShadow(this.ctx);
@@ -160,9 +156,7 @@ class SnakeGame {
       case "up":
         // if the snake is at the top edge of the grid, move it to the bottom edge
         return head - this.gridSize < 0
-          ? this.gridSize * this.gridSize -
-              this.gridSize +
-              (head % this.gridSize)
+          ? this.gridSize * this.gridSize - this.gridSize + (head % this.gridSize)
           : // if not, move it up
             head - this.gridSize;
     }
@@ -307,7 +301,24 @@ class SnakeGame {
     // schedule the next game loop to sync with the screen refresh rate
     requestAnimationFrame((t) => this.gameLoop(t));
   }
+
+  // method to check if values are received, prints the report in JSON string to the console
+  printGameState() {
+    const gameState = {
+      gridSize: this.gridSize,
+      squareSize: this.squareSize,
+      direction: this.direction,
+      points: this.points,
+      speed: this.speed,
+      snake: this.snake,
+      foodPosition: this.foodPosition,
+      gameOver: this.gameOver,
+    };
+    console.log(JSON.stringify(gameState, null, 2));
+  }
 }
 
-// create a new instance of the SnakeGame class
-const game = new SnakeGame();
+// create a new instance of the SnakeGame class as a 'game' objects, with the global variables as parameters.
+const game = new SnakeGame(gridSize, squareSize, direction, points, speed, snake);
+// for debugging, check if the game received the values correctly
+game.printGameState();
